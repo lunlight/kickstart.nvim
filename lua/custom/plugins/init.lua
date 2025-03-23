@@ -8,26 +8,6 @@ return {
     end,
   },
   {
-    'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v3.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons',
-      'MunifTanjim/nui.nvim',
-    },
-    config = function()
-      vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { noremap = true, silent = true })
-    end,
-  },
-  --[[{
-    'github/copilot.vim',
-    name = 'copilot',
-    priority = 1000,
-    config = function()
-      vim.g.copilot_workspace_folders = { '~/Documents/cibp/4/' }
-    end,
-  },--]]
-  {
     'supermaven-inc/supermaven-nvim',
     config = function()
       require('supermaven-nvim').setup {}
@@ -43,8 +23,18 @@ return {
     end,
   },
   {
-    { 'akinsho/toggleterm.nvim', version = '*', config = true },
-
-    vim.api.nvim_set_keymap('n', '<leader>g', '<cmd>lua _lazygit_toggle()<CR>', { noremap = true, silent = true }),
+    'kdheepak/lazygit.nvim',
+    lazy = true,
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
+    },
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      vim.keymap.set('n', '<leader>lg', '<cmd>LazyGit<cr>', { noremap = true, silent = true })
+    end,
   },
 }
